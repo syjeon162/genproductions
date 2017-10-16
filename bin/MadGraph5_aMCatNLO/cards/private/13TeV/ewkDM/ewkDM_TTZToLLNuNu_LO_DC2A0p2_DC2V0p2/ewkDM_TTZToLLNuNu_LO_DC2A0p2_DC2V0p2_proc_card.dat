@@ -11,4 +11,4 @@ define w = w+ w-
 generate p p > t t~ l+ l- NP=1
 add process p p > t t~ vl vl~ NP=1
 
-output ewkDM_TTZToLLNuNu_LO -nojpeg
+output ewkDM_TTZToLLNuNu_LO_DC2A0p2_DC2V0p2 -nojpeg
