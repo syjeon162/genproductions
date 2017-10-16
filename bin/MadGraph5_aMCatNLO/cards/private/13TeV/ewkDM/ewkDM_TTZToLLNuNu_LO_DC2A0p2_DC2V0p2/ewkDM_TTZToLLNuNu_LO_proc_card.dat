@@ -1,0 +1,14 @@
+import model ewkDM-no_b_mass
+
+define p = g u c d s b u~ c~ d~ s~ b~
+define j = g u c d s b u~ c~ d~ s~ b~
+define l+ = e+ mu+ ta+
+define l- = e- mu- ta-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+define w = w+ w-
+
+generate p p > t t~ l+ l- NP=1
+add process p p > t t~ vl vl~ NP=1
+
+output ewkDM_TTZToLLNuNu_LO -nojpeg
