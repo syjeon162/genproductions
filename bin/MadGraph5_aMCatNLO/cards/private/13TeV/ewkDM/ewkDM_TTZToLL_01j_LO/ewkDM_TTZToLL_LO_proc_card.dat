@@ -6,6 +6,6 @@ define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 
 generate p p > t t~ l+ l- / h NP=1 @0
-generate p p > t t~ l+ l- j / h NP=1 @1
+add process p p > t t~ l+ l- j / h NP=1 @1
 
 output ewkDM_TTZToLL_LO -nojpeg
