@@ -150,6 +150,7 @@ SYSCALCSOURCE=https://cms-project-generators.web.cern.ch/cms-project-generators/
 
 MGBASEDIRORIG=MG5_aMC_v2_4_2
 
+
 isscratchspace=0
 
 if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
@@ -449,9 +450,9 @@ if [ -d gridpack ]; then
   rm -rf gridpack
 fi
 
-if [ -d processtmp ]; then
-  rm -rf processtmp
-fi
+#if [ -d processtmp ]; then
+#  rm -rf processtmp
+#fi
 
 if [ -d process ]; then
   rm -rf process
@@ -633,7 +634,7 @@ else
   echo "cleaning temporary output"
   mv $WORKDIR/processtmp/pilotrun_gridpack.tar.gz $WORKDIR/
   mv $WORKDIR/processtmp/Events/pilotrun/unweighted_events.lhe.gz $WORKDIR/
-  rm -rf processtmp
+  #rm -rf processtmp
   mkdir process
   cd process
   echo "unpacking temporary gridpack"
