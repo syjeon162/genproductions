@@ -112,10 +112,6 @@ make_gridpack () {
       tar xzf ${MG}
       rm "$MG"
     
-      # agrohsje copy all model files 
-      cp -rp ${PRODHOME}/addons/models/* ${MGBASEDIRORIG}/models/.
-      
-
       #############################################
       #Apply any necessary patches on top of official release
       #############################################
@@ -193,7 +189,7 @@ make_gridpack () {
           #get needed BSM model
           if [[ $model = *[!\ ]* ]]; then
             echo "Loading extra model $model"
-            wget --no-check-certificate https://cms-project-generators.web.cern.ch/cms-project-generators/$model	
+            wget --no-check-certificate http://www.hephy.at/user/dspitzbart/UFO/$model
             cd models
             if [[ $model == *".zip"* ]]; then
               unzip ../$model
