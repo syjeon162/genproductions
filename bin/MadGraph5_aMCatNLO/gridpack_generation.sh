@@ -112,6 +112,10 @@ make_gridpack () {
       tar xzf ${MG}
       rm "$MG"
     
+      # agrohsje copy all model files 
+      cp -rp ${PRODHOME}/addons/models/* ${MGBASEDIRORIG}/models/.
+      
+
       #############################################
       #Apply any necessary patches on top of official release
       #############################################
@@ -516,7 +520,12 @@ make_gridpack () {
           echo "preparing reweighting step"
           mkdir -p madevent/Events/pilotrun
           cp $WORKDIR/unweighted_events.lhe.gz madevent/Events/pilotrun
-          echo "f2py_compiler=" `which gfortran` >> ./madevent/Cards/me5_configuration.txt
+          # agrohsje 
+#         echo "f2py_compiler=" `which gfortran` >> ./madevent/Cards/me5_configuration.txt
+	  echo "f2py_compiler=" `which f2py` >> ./madevent/Cards/me5_configuration.txt
+          echo "cpp_compiler=" `which cpp` >> ./madevent/Cards/me5_configuration.txt
+          echo "fortran_compiler=" `which gfortran` >> ./madevent/Cards/me5_configuration.txt
+	  # end agrohsje 
           #need to set library path or f2py won't find libraries
           export LIBRARY_PATH=$LD_LIBRARY_PATH
           cd madevent
@@ -526,8 +535,12 @@ make_gridpack () {
             echo "Compiling subprocess $(basename $file)"
             cd $file
             for i in 2 3; do
-                MENUM=$i make matrix${i}py.so >& /dev/null
-                echo "Library MENUM=$i compiled with status $?"
+                # agrohsje changed to execute f2py properly
+                sed -i -e "s|\$(F2PY)|f2py|g" ../makefile
+                sed -i -e "s|\$(F2PY)|f2py|g" ../makefileP
+		# end agrohsje 
+		MENUM=$i make matrix${i}py.so >& /dev/null
+		echo "Library MENUM=$i compiled with status $?"
             done
             cd -
           done
