@@ -1,0 +1,8 @@
+import model SMEFTatNLO
+
+define w = w+ w-
+
+generate p p > t t~ w QED=3 QCD=0 [QCD] @0
+
+output TTWJetsToLNuEWK_5f_NLO -nojpeg
+

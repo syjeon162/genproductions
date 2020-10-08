@@ -140,6 +140,10 @@ make_gridpack () {
         echo "    WARNING: Applying custom user patch. I hope you know what you're doing!"
         cat $CARDSDIR/${name}*.patch | patch -p1
       fi
+
+      wget http://feynrules.irmp.ucl.ac.be/raw-attachment/wiki/SMEFTatNLO/SMEFTatNLO_v1.0.tar.gz
+      tar -xaf SMEFTatNLO_v1.0.tar.gz
+      mv SMEFTatNLO models/
     
       LHAPDFCONFIG=`echo "$LHAPDF_DATA_PATH/../../bin/lhapdf-config"`
     
