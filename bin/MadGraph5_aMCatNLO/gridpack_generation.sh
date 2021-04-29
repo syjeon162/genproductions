@@ -163,6 +163,12 @@ make_gridpack () {
         cat $CARDSDIR/${name}*.patch | patch -p1
       fi
     
+      wget http://feynrules.irmp.ucl.ac.be/raw-attachment/wiki/SMEFTatNLO/SMEFTatNLO_v1.0.tar.gz
+      tar -xaf SMEFTatNLO_v1.0.tar.gz
+      mv SMEFTatNLO models/
+
+      cp /home/users/dspitzba/TTW/MG5_aMC_v2_6_5/models/SMEFTatNLO/restrict_myNLO.dat models/SMEFTatNLO/
+
       LHAPDFCONFIG=`echo "$LHAPDF_DATA_PATH/../../bin/lhapdf-config"`
     
       LHAPDFINCLUDES=`$LHAPDFCONFIG --incdir`
@@ -263,6 +269,7 @@ make_gridpack () {
       # This needs to happen before the code-generation step, as fortran templates
       # are modified based on this parameter.
       echo "cluster_local_path = `${LHAPDFCONFIG} --datadir`" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt 
+      #echo "nb_core = 12" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt  ## not using this rn
     
       ########################
       #Run the code-generation step to create the process directory
@@ -474,6 +481,11 @@ make_gridpack () {
 
       cat makegrid.dat | ./bin/generate_events -n pilotrun
       # Run this step separately in debug mode since it gives so many problems
+
+      #echo "nb_core = 1" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
+      echo "[DANIEL] workdir: $WORKDIR"
+      echo "nb_core = 1" >> $WORKDIR/MG5_aMC_v2_6_5/input/mg5_configuration.txt
+
       if [ -e $CARDSDIR/${name}_reweight_card.dat ]; then
           echo "preparing reweighting step"
           prepare_reweight $isnlo $WORKDIR $scram_arch $CARDSDIR/${name}_reweight_card.dat

@@ -94,10 +94,13 @@ prepare_reweight () {
     else
         cd $WORKDIR/process
 	mkdir -p madevent/Events/pilotrun
-        cp $WORKDIR/unweighted_events.lhe.gz madevent/Events/pilotrun
+        #cp $WORKDIR/unweighted_events.lhe.gz madevent/Events/pilotrun
+        cp $WORKDIR/processtmp/Events/pilotrun/events.lhe.gz madevent/Events/pilotrun/unweighted_events.lhe.gz
         cd madevent
         config=./madevent/Cards/me5_configuration.txt
     fi
+
+    echo "[DANIEL] here now: `pwd`"
 
     # No longer necessary in gcc6
     if [[ ${scram_arch} == *"gcc48"* ]]; then
@@ -105,6 +108,8 @@ prepare_reweight () {
         #need to set library path or f2py won't find libraries
         export LIBRARY_PATH=$LD_LIBRARY_PATH
     fi
+    echo `which gfortran`
+    echo `gfortran --version`
 
     # Use f2py2 instead of f2py to install a py2 version of "rwgt2py"
     # (occurs in CMSSW_10_6_19 where default f2py points to a py3 version)
@@ -114,12 +119,16 @@ prepare_reweight () {
 
     if [ "$isnlo" -gt "0" ]; then
         # Needed to get around python import errors
+        echo "[DANIEL] pilotrun"
         rwgt_dir="$WORKDIR/process/rwgt"
+        echo $rwgt_dir
         export PYTHONPATH=$rwgt_dir:$PYTHONPATH
-        echo "0" | ./bin/aMCatNLO --debug reweight pilotrun
+        echo "0" | ./bin/aMCatNLO --debug reweight pilotrun  # this just pipes 0 to accept reweight_card
     else
         echo "0" | ./bin/madevent --debug reweight pilotrun
     fi
+
+    echo "[DANIEL] do I make it here?"
 
     # Explicitly compile all subprocesses to avoid
     # compilation on the cluster
