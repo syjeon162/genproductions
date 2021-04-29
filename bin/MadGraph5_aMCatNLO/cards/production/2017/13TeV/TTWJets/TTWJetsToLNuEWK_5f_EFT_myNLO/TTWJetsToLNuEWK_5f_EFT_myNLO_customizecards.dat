@@ -1,0 +1,10 @@
+#put card customizations here (change top and higgs mass for example)
+set param_card mass 6 172.5
+set param_card yukawa 6 172.5
+set param_card mass 25 125.0
+set param_card dim62f 12 4.000
+set param_card dim62f 13 4.000
+set param_card dim62f 15 4.000
+set param_card dim62f 19 2.000
+set param_card dim62f 22 2.000
+set param_card dim62f 23 2.000
