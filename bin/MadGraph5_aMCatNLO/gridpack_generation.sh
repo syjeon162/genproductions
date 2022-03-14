@@ -163,11 +163,10 @@ make_gridpack () {
         cat $CARDSDIR/${name}*.patch | patch -p1
       fi
     
-      wget http://feynrules.irmp.ucl.ac.be/raw-attachment/wiki/SMEFTatNLO/SMEFTatNLO_v1.0.tar.gz
-      tar -xaf SMEFTatNLO_v1.0.tar.gz
-      mv SMEFTatNLO models/
-
-      cp /home/users/dspitzba/TTW/MG5_aMC_v2_6_5/models/SMEFTatNLO/restrict_myNLO.dat models/SMEFTatNLO/
+      #wget http://feynrules.irmp.ucl.ac.be/raw-attachment/wiki/SMEFTatNLO/SMEFTatNLO_v1.0.3.tar.gz
+      #tar -xaf SMEFTatNLO_v1.0.tar.gz
+      #mv SMEFTatNLO models/
+      #cp /home/users/dspitzba/TTW/MG5_aMC_v2_6_5/models/SMEFTatNLO/restrict_myNLO.dat models/SMEFTatNLO/
 
       LHAPDFCONFIG=`echo "$LHAPDF_DATA_PATH/../../bin/lhapdf-config"`
     
