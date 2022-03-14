@@ -1,0 +1,6 @@
+import model SMEFTatNLO-NLO_no4q
+
+generate p p > t t~ w- QED=3 QCD=0 NP=2 [QCD] @0
+add process p p > t t~ w+ QED=3 QCD=0 NP=2 [QCD] @0
+
+output TTW_5f_EFT_NLO -nojpeg
