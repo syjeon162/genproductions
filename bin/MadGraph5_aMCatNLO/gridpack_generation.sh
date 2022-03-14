@@ -268,7 +268,7 @@ make_gridpack () {
       # This needs to happen before the code-generation step, as fortran templates
       # are modified based on this parameter.
       echo "cluster_local_path = `${LHAPDFCONFIG} --datadir`" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt 
-      #echo "nb_core = 12" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt  ## not using this rn
+      echo "nb_core = 12" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt  # [DS] trying not to be the asshole
     
       ########################
       #Run the code-generation step to create the process directory
