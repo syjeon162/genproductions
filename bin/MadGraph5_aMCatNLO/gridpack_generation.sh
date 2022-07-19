@@ -282,7 +282,8 @@ make_gridpack () {
       #*FIXME* workaround for broken cluster_local_path handling. 
       # This needs to happen before the code-generation step, as fortran templates
       # are modified based on this parameter.
-      echo "cluster_local_path = `${LHAPDFCONFIG} --datadir`" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt 
+      echo "cluster_local_path = `${LHAPDFCONFIG} --datadir`" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
+      echo "nb_core = 12" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt  # [DS] don't be the asshole
     
       ########################
       #Run the code-generation step to create the process directory
@@ -493,6 +494,10 @@ make_gridpack () {
       echo "done" >> makegrid.dat
 
       cat makegrid.dat | ./bin/generate_events -n pilotrun
+
+      echo "[DANIEL] workdir: $WORKDIR"
+      echo "nb_core = 1" >> $WORKDIR/MG5_aMC_v2_6_5/input/mg5_configuration.txt
+
       # Run this step separately in debug mode since it gives so many problems
       if [ -e $CARDSDIR/${name}_reweight_card.dat ]; then
           echo "preparing reweighting step"
